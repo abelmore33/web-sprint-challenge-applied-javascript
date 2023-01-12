@@ -11,7 +11,31 @@ const Header = (title, date, temp) => {
   //    <span class="temp">{ temp }</span>
   //  </div>
   //
+  const headerDiv = document.createElement('div');
+  const currDate = document.createElement('span');
+  const pageTitle = document.createElement('h1');
+  const currTemp = document.createElement('span');
+
+  headerDiv.classList.add('header');
+  currDate.classList.add('date');
+  currTemp.classList.add('temp');
+
+
+
+  
+  headerDiv.appendChild(currDate);
+  headerDiv.appendChild(pageTitle);
+  headerDiv.appendChild(currTemp);
+
+  currDate.textContent = date;
+  pageTitle.textContent = title;
+  currTemp.textContent = temp;
+  
+  
+  return headerDiv
+
 }
+console.log('hey')
 
 const headerAppender = (selector) => {
   // TASK 2
@@ -26,6 +50,10 @@ const headerAppender = (selector) => {
   // We are taking care of passing in the correct selector on line 16,
   // so all that you need to do is pass it into the querySelector method
   // for the tests to work!
+  
+  return document.querySelector(selector).appendChild(Header("Bloomtech Chronicles",'01/11/2023',"20°"))
+
 }
+
 
 export { Header, headerAppender }

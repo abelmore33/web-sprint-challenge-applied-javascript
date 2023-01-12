@@ -1,4 +1,5 @@
 import axios from "axios";
+import e from "cors";
 
 const Card = (article) => {
   // TASK 5
@@ -67,14 +68,25 @@ const cardAppender = (selector) => {
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
   const sele = document.querySelector(selector)
-  console.log(sele)
+  
   axios.get("http://localhost:5001/api/articles")
   .then(res =>{
-    const articleObj = res.data.articles.bootstrap
-
-    console.log(articleObj[0])
-    return sele.appendChild(Card(articleObj[0]))
-  })
+    const articleObj = res.data.articles
+    // console.log(articleObj)
+    let count = 0;
+    Object.entries(articleObj).forEach(([key]) => {
+      for(let i = 0; i < articleObj[key].length; i++){
+           sele.appendChild(Card(articleObj[key][i]))
+      }
+    
+    
+    })
+  
+  }
+    
+    
+    
+  )
 }
 
 export { Card, cardAppender }
